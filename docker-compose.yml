@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: blog-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - PORT=3000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_DATABASE=blogdb
+    volumes:
+      - .:/app
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: blog-db
+    ports:
+      - "6432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blogdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

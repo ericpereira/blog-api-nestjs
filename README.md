@@ -8,7 +8,7 @@ A simple RESTful API for managing blog posts and comments using NestJS, TypeORM,
 ## How to run with Docker
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 This command will build the Docker image based on your Dockerfile and start both the API and the PostgreSQL database using Docker Compose.
 
